@@ -22,93 +22,95 @@ class _SignUpState extends State<SignUp>
     return Scaffold(
       appBar: AppBar(),
 
-      body: Form(
-        key: FormKey,
+      body: SafeArea(
+        child: Form(
+          key: FormKey,
 
-        child: Column(
-          children: [
-            TextFormField(
-              controller: EmailController,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: EmailController,
 
-              validator: (value)
-              {
-                if (value == null || value.length < 1)
-                  return "Enter email address";
+                validator: (value)
+                {
+                  if (value == null || value.length < 1)
+                    return "Enter email address";
 
-                return null;
-              },
-            ),
+                  return null;
+                },
+              ),
 
-            TextFormField(
-              controller: PasswordController,
-
-              validator: (value)
-              {
-                if (value == null || value.length < 1)
-                  return "Enter a password";
-
-                if (value != VerifyController.text)
-                  return "Passwords do not match";
-
-                return null;
-              }
-            ),
-
-            TextFormField(
-                controller: VerifyController,
+              TextFormField(
+                controller: PasswordController,
 
                 validator: (value)
                 {
                   if (value == null || value.length < 1)
                     return "Enter a password";
 
-                  if (value != PasswordController.text)
+                  if (value != VerifyController.text)
                     return "Passwords do not match";
 
                   return null;
                 }
-            ),
+              ),
 
-            ElevatedButton(
-              onPressed: () async
-              {
-                if (FormKey.currentState == null) return;
-                if (!FormKey.currentState!.validate()) return;
+              TextFormField(
+                  controller: VerifyController,
 
-                try
+                  validator: (value)
+                  {
+                    if (value == null || value.length < 1)
+                      return "Enter a password";
+
+                    if (value != PasswordController.text)
+                      return "Passwords do not match";
+
+                    return null;
+                  }
+              ),
+
+              ElevatedButton(
+                onPressed: () async
                 {
-                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                      email: EmailController.text,
-                      password: PasswordController.text
-                  );
-                }
-                on FirebaseAuthException catch (e)
+                  if (FormKey.currentState == null) return;
+                  if (!FormKey.currentState!.validate()) return;
+
+                  try
+                  {
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: EmailController.text,
+                        password: PasswordController.text
+                    );
+                  }
+                  on FirebaseAuthException catch (e)
+                  {
+                    showDialog(
+                      context: context,
+                      builder: (context)
+                      {
+                        return AlertDialog(
+                          title: Text(e.message ?? "Failed to signup")
+                        );
+                      }
+                    );
+                  }
+                },
+
+                child: Text("Sign Up")
+              ),
+
+              ElevatedButton(
+                onPressed: ()
                 {
-                  showDialog(
-                    context: context,
-                    builder: (context)
-                    {
-                      return AlertDialog(
-                        title: Text(e.message ?? "Failed to signup")
-                      );
-                    }
-                  );
-                }
-              },
+                  Navigator.pushNamed(context, "/login");
+                },
 
-              child: Text("Sign Up")
-            ),
-
-            ElevatedButton(
-              onPressed: ()
-              {
-                Navigator.pushNamed(context, "/login");
-              },
-
-              child: Text("Go to login")
-            )
-          ]
-        )
+                child: Text("Go to login")
+              )
+            ]
+          )
+        ),
       )
     );
   }
