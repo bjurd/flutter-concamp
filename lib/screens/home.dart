@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:concamp/services/firestore.dart';
 
 class Home extends StatefulWidget
@@ -35,7 +36,9 @@ class _HomeState extends State<Home>
             if (!snapshot.hasData)
               return Text("Thinking");
 
-            return Text("Yay!");
+            return ListView(
+              children: Firestore.BuildPostStream(snapshot)
+            );
           }
         )
       )
