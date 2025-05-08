@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:concamp/services/auth.dart';
 
 class Login extends StatefulWidget
 {
@@ -56,30 +56,30 @@ class _LoginState extends State<Login>
                         {
                           if (FormKey.currentState == null) return;
                           if (!FormKey.currentState!.validate()) return;
-          
-                          try
-                          {
-                            await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: EmailController.text,
-                                password: PasswordController.text
-                            );
-          
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              "/home",
-                              (r) => false
-                            );
-                          }
-                          on FirebaseAuthException catch (e)
+
+                          String? Message = await Auth.Login(
+                              EmailController.text,
+                              PasswordController.text
+                          );
+
+                          if (Message != null)
                           {
                             showDialog(
                                 context: context,
                                 builder: (context)
                                 {
                                   return AlertDialog(
-                                      title: Text(e.message ?? "Failed to login")
+                                      title: Text(Message)
                                   );
                                 }
+                            );
+                          }
+                          else
+                          {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              "/home",
+                              (r) => false
                             );
                           }
                         },

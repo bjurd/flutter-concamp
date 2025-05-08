@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:concamp/services/auth.dart';
 
 class SignUp extends StatefulWidget
 {
@@ -76,24 +76,26 @@ class _SignUpState extends State<SignUp>
                   if (FormKey.currentState == null) return;
                   if (!FormKey.currentState!.validate()) return;
 
-                  try
-                  {
-                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                        email: EmailController.text,
-                        password: PasswordController.text
-                    );
-                  }
-                  on FirebaseAuthException catch (e)
+                  String? Message = await Auth.SignUp(
+                      EmailController.text,
+                      PasswordController.text
+                  );
+
+                  if (Message != null)
                   {
                     showDialog(
-                      context: context,
-                      builder: (context)
-                      {
-                        return AlertDialog(
-                          title: Text(e.message ?? "Failed to signup")
-                        );
-                      }
+                        context: context,
+                        builder: (context)
+                        {
+                          return AlertDialog(
+                              title: Text(Message)
+                          );
+                        }
                     );
+                  }
+                  else
+                  {
+                    Navigator.pushNamed(context, "/login");
                   }
                 },
 
