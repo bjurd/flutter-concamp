@@ -6,6 +6,7 @@ import 'firebase_options.dart';
 import 'package:concamp/screens/signup.dart';
 import 'package:concamp/screens/login.dart';
 import 'package:concamp/screens/home.dart';
+import 'package:concamp/screens/create_post.dart';
 
 void main() async
 {
@@ -22,7 +23,8 @@ void main() async
       {
         "/signup": (context) => SignUp(),
         "/login": (context) => Login(),
-        "/home": (context) => Home()
+        "/home": (context) => Home(),
+        "/make": (context) => CreatePost()
       }
   ));
 }

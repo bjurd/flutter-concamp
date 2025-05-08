@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:concamp/services/firestore.dart';
 
 class Home extends StatefulWidget
 {
@@ -17,11 +17,18 @@ class _HomeState extends State<Home>
     return Scaffold(
       appBar: AppBar(),
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()
+        {
+          Navigator.pushNamed(context, "/make");
+        },
+
+        child: Icon(Icons.add)
+      ),
+
       body: SafeArea(
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection("posts")
-              .snapshots(),
+          stream: Firestore.GetPostStream(),
 
           builder: (context, snapshot)
           {
