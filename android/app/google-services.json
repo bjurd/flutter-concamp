@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631234745346",
+    "project_id": "concamp-36dd3",
+    "storage_bucket": "concamp-36dd3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631234745346:android:348443ba1d61105846031b",
+        "android_client_info": {
+          "package_name": "com.bjurd.concamp.concamp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDukeom7E_oAswcNlFC-zVFHJscmrL4pBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
