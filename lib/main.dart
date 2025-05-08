@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 import 'package:concamp/screens/signup.dart';
+import 'package:concamp/screens/login.dart';
 
 void main() async
 {
@@ -14,11 +15,12 @@ void main() async
   );
 
   runApp(MaterialApp(
-      initialRoute: "/",
+      initialRoute: "/signup",
 
       routes:
       {
-        "/": (context) => SignUp()
+        "/signup": (context) => SignUp(),
+        "/login": (context) => Login()
       }
   ));
 }
