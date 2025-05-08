@@ -35,4 +35,9 @@ class Auth
       return e.message ?? "Failed to login";
     }
   }
+
+  static String? GetUserID()
+  {
+    return FirebaseAuth.instance.currentUser?.uid;
+  }
 }
