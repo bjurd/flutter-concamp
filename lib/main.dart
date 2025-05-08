@@ -5,6 +5,7 @@ import 'firebase_options.dart';
 
 import 'package:concamp/screens/signup.dart';
 import 'package:concamp/screens/login.dart';
+import 'package:concamp/screens/home.dart';
 
 void main() async
 {
@@ -20,7 +21,8 @@ void main() async
       routes:
       {
         "/signup": (context) => SignUp(),
-        "/login": (context) => Login()
+        "/login": (context) => Login(),
+        "/home": (context) => Home()
       }
   ));
 }

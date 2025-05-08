@@ -62,6 +62,12 @@ class _LoginState extends State<Login>
                               email: EmailController.text,
                               password: PasswordController.text
                           );
+
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            "/home",
+                            (r) => false
+                          );
                         }
                         on FirebaseAuthException catch (e)
                         {
