@@ -97,6 +97,15 @@ class _SignUpState extends State<SignUp>
               },
 
               child: Text("Sign Up")
+            ),
+
+            ElevatedButton(
+              onPressed: ()
+              {
+                Navigator.pushNamed(context, "/login");
+              },
+
+              child: Text("Go to login")
             )
           ]
         )
