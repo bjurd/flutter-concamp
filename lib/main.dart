@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'package:concamp/screens/signup.dart';
+
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,8 +14,11 @@ void main() async
   );
 
   runApp(MaterialApp(
-    home: Scaffold(
-      body: Text("hello")
-    )
+      initialRoute: "/",
+
+      routes:
+      {
+        "/": (context) => SignUp()
+      }
   ));
 }
