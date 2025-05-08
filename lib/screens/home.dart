@@ -16,32 +16,58 @@ class _HomeState extends State<Home>
   Widget build(BuildContext context)
   {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Stack(
+          children: [
+            Text(
+              "BookFace",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        centerTitle: true,
+      ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: ()
         {
           Navigator.pushNamed(context, "/make");
         },
-
-        child: Icon(Icons.add)
+        backgroundColor: Colors.blue,
+        child: Icon(Icons.add, color: Colors.white),
       ),
 
       body: SafeArea(
-        child: StreamBuilder(
-          stream: Firestore.GetPostStream(),
-
-          builder: (context, snapshot)
-          {
-            if (!snapshot.hasData)
-              return Text("Thinking");
-
-            return ListView(
-              children: Firestore.BuildPostStream(snapshot)
-            );
-          }
-        )
-      )
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: StreamBuilder(
+            stream: Firestore.GetPostStream(),
+            builder: (context, snapshot)
+            {
+              if (!snapshot.hasData)
+                return Center(child: Text("Thinking"));
+              return ListView(
+                children: Firestore.BuildPostStream(snapshot).map((postWidget) => Card(
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: postWidget,
+                  ),
+                ))
+                    .toList(),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
