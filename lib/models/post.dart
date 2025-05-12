@@ -22,11 +22,29 @@ class Post extends StatelessWidget
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
+          Text("User: $AuthorID", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+          SizedBox(height: 12.0),
           Text(Title),
           Text(Body),
-          Text(AuthorID)
-        ]
-      )
+          SizedBox(height: 12.0),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: ElevatedButton.icon(onPressed: () {},
+              icon: Icon(Icons.edit, color: Colors.white),
+              label: Text(
+                "Edit",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
