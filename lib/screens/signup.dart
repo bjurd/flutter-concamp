@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Create Account"),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.white,
         centerTitle: true,
       ),
       body: SafeArea(
