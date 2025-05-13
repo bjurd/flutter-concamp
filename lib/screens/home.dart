@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:concamp/services/firestore.dart';
 
 class Home extends StatefulWidget
@@ -18,18 +20,25 @@ class _HomeState extends State<Home>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Stack(
-          children: [
-            Text(
-              "BookFace",
-              style: TextStyle(
-                fontSize: 24,
-                color: Colors.white,
-              ),
-            ),
-          ],
+        title: Text(
+            "BookFace",
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.white,
+            )
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout, color: Colors.white),
+
+            onPressed: ()
+            {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushNamedAndRemoveUntil(context, "/login", (r) => false);
+            },
+          ),
+        ],
       ),
 
       floatingActionButton: FloatingActionButton(
