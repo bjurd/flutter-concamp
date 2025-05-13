@@ -127,6 +127,13 @@ class _SignUpState extends State<SignUp> {
                       );
                     } else {
                       Navigator.pushNamed(context, "/login");
+
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(title: Text("Signed up successfully!"));
+                        },
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
