@@ -10,6 +10,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final FormKey = GlobalKey<FormState>();
+  final NameController = TextEditingController();
   final EmailController = TextEditingController();
   final PasswordController = TextEditingController();
   final VerifyController = TextEditingController();
@@ -31,6 +32,23 @@ class _SignUpState extends State<SignUp> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Icon(Icons.person_add, size: 100, color: Colors.deepPurple),
+
+                SizedBox(height: 20),
+
+                TextFormField(
+                  controller: NameController,
+                  decoration: InputDecoration(
+                    labelText: "Name",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.perm_identity),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.length < 1) {
+                      return "Enter your name";
+                    }
+                    return null;
+                  },
+                ),
 
                 SizedBox(height: 20),
 
@@ -95,6 +113,7 @@ class _SignUpState extends State<SignUp> {
                     if (!FormKey.currentState!.validate()) return;
 
                     String? Message = await Auth.SignUp(
+                      NameController.text,
                       EmailController.text,
                       PasswordController.text,
                     );
