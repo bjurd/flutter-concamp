@@ -91,4 +91,18 @@ class Firestore
 
     return null;
   }
+
+  static Future<String?> EditPost(String ID, String Title, String Body) async
+  {
+    // TODO: Error handling
+    await FirebaseFirestore.instance
+        .collection("posts")
+        .doc(ID)
+        .update({
+      "title": Title,
+      "body": Body,
+    });
+
+    return null;
+  }
 }
