@@ -96,5 +96,5 @@ assets:
 
 flutter_launcher_icons:
   android: true
-  ios: true
+  ios: false
   image_path: "assets/bookface.jpg"

@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:concamp/services/firestore.dart';
 
+import 'package:concamp/screens/edit_post.dart';
+
 class Post extends StatelessWidget
 {
   DocumentSnapshot? PostData;
@@ -38,10 +40,19 @@ class Post extends StatelessWidget
                 Align(
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton.icon(
-                    onPressed: ()
-                    {
-
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditPost(
+                            id: PostData!.id,
+                            title: Title,
+                            body: Body,
+                          ),
+                        ),
+                      );
                     },
+
                     icon: Icon(Icons.edit, color: Colors.white),
                     label: Text(
                       "Edit",
