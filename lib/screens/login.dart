@@ -105,7 +105,7 @@ class _LoginState extends State<Login> {
                         );
                       }
                     },
-                    child: Text("Login", style: TextStyle(fontSize: 16)),
+                    child: Text("Login", style: TextStyle(fontSize: 16, color: Colors.white)),
                   ),
                   const SizedBox(height: 10),
 

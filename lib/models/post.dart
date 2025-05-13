@@ -25,6 +25,9 @@ class Post extends StatelessWidget
         future: Firestore.GetUserInfo(AuthorID),
         builder: (context, snapshot)
         {
+          if (snapshot == null) return Text("");
+          if (!snapshot.hasData) return Text("");
+
           String AuthorName = snapshot.data!.docs[0]["name"]; // blek
 
           return Container(
