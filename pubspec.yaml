@@ -95,6 +95,5 @@ assets:
   # see https://flutter.dev/to/font-from-package
 
 flutter_launcher_icons:
-  android: true
-  ios: true
+  android: "launcher_icon"
   image_path: "assets/bookface.jpg"
